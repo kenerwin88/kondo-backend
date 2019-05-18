@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "kondo-backend"
+version = "0.1.0"
+description = ""
+authors = ["Ken Erwin <ken@devopslibrary.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+flask = "^1.0.2"
+mypy = "^0.701"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+black = "19.3b0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
