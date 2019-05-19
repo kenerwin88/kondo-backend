@@ -14,7 +14,7 @@ kondo-backend.prod.config
 # Installer logs
 # Unit test / coverage reportshtmlcov/
 .pytest_cache/
-__pycache__/
+__pycache__
 *.pyc
 # Translations
 # Django stuff:
