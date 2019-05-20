@@ -4,9 +4,12 @@ import os
 from flask import Flask
 from kondo_backend import auth
 from flask_restplus import Api
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
+
 
 config = {
     "development": "../kondo-backend.dev.config",

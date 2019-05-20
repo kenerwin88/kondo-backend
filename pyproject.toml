@@ -12,6 +12,7 @@ requests = "^2.22.0"
 pyjwt = "^1.4.0"
 flask-restplus = "^0.12.1"
 coverage = "^4.5"
+flask-cors = "^3.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
