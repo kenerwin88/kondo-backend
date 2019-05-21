@@ -2,7 +2,7 @@ __version__ = "0.1.0"
 
 import os
 from flask import Flask
-from kondo_backend import auth
+from kondo_backend import auth, organization
 from flask_restplus import Api
 from flask_cors import CORS
 
@@ -21,4 +21,5 @@ app.config.from_pyfile(config[config_name], silent=True)
 
 # Register Blueprints
 app.register_blueprint(auth.blueprint)
+app.register_blueprint(organization.blueprint)
 api = Api(app)

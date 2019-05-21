@@ -42,7 +42,6 @@ class Auth(Resource):
             params=payload,
             headers={"Accept": "application/json"},
         )
-
         # Return Github Error on failure
         if "error" in req.json():
             return Response(req, status=401, mimetype="application/json")
