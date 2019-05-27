@@ -7,3 +7,4 @@ api = Api(blueprint)
 
 # noinspection PyPep8
 from . import get_orgs
+from . import get_repositories
