@@ -5,6 +5,7 @@ description = ""
 authors = ["Ken Erwin <ken@devopslibrary.com>"]
 
 [tool.poetry.dependencies]
+cryptography = "^2.6.1"
 python = "^3.7"
 flask = "^1.0.2"
 mypy = "^0.701"
