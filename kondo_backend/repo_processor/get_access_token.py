@@ -5,16 +5,15 @@ from kondo_backend import app
 from typing import Dict
 
 
-def get_access_token(installation_id: str) -> Dict[str, float]:
+def get_access_token(installation_id: str) -> str:
     """
     In order to authentication to a Github installation API, you have to have a token (one PER installation).  Given
-    an installation ID, this function will return the token needed for later API calls and git authentication, including
-    it's expires_at date.
+    an installation ID, this function will return the token needed for later API calls and git authentication.
 
     Returns
     -------
-    token
-        Token & Expiration
+    str
+        Token for installation authenticaiton
         """
     private_key = open(app.config["GITHUB_PRIVATE_KEY"], "r+").read()
 
@@ -38,5 +37,5 @@ def get_access_token(installation_id: str) -> Dict[str, float]:
         headers=headers,
     )
 
-    return req.json()
+    return req.json()["token"]
     # return "token"

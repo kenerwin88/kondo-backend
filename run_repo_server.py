@@ -5,3 +5,8 @@ if __name__ == "__main__":
     print(installations)
     token = repo_processor.get_access_token.get_access_token("932356")
     print(token)
+    print(
+        repo_processor.get_installation_repositories.get_installation_repositories(
+            token
+        )
+    )
