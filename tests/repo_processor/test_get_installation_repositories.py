@@ -1556,9 +1556,7 @@ def test_get_installation_repositories():
         status=200,
         match_querystring=False,
     )
-    repositories = repo_processor.get_installation_repositories.get_installation_repositories(
-        token="932356"
-    )
+    repositories = repo_processor.get_installation_repositories(token="932356")
     assert repositories == [
         {
             "id": 142802060,

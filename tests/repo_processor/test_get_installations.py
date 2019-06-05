@@ -136,8 +136,8 @@ def test_get_installations():
         status=200,
         match_querystring=True,
     )
-    installations = repo_processor.get_installations.get_installations()
+    installations = repo_processor.get_installations()
     assert installations == [
-        {"id": 932356, "org": "devopslibrary"},
-        {"id": 898100, "org": "kondo-io"},
+        {"id": "932356", "org": "devopslibrary"},
+        {"id": "898100", "org": "kondo-io"},
     ]

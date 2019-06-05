@@ -13,8 +13,7 @@ def get_installations():
 
     Returns
     -------
-    array
-        Array of all Github installations
+    :rtype: list
     """
     private_key = open(app.config["GITHUB_PRIVATE_KEY"], "r+").read()
 
@@ -34,5 +33,7 @@ def get_installations():
     r = requests.get("https://api.github.com/app/installations", headers=headers)
     installations = []
     for install in r.json():
-        installations.append({"id": install["id"], "org": install["account"]["login"]})
+        installations.append(
+            {"id": str(install["id"]), "org": str(install["account"]["login"])}
+        )
     return installations

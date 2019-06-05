@@ -16,5 +16,5 @@ def test_get_access_token():
         status=200,
         match_querystring=True,
     )
-    access_token = repo_processor.get_access_token.get_access_token("932356")
+    access_token = repo_processor.get_access_token("932356")
     assert access_token == "v1.220533d67e5cd15a0a32890b811e72667ce6a83d"

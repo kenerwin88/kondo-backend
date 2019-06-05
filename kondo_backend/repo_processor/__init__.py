@@ -1,1 +1,4 @@
-from . import get_installations, get_access_token, get_installation_repositories
+from .get_installations import get_installations
+from .get_access_token import get_access_token
+from .get_installation_repositories import get_installation_repositories
+from .process_repositories import process_repositories
