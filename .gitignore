@@ -4,6 +4,9 @@
 # Kondo Secrets
 kondo-backend.prod.config
 
+# DS_Store
+.DS_Store
+
 # Packages
 *.egg-info
 # Byte-compiled / optimized / DLL files
