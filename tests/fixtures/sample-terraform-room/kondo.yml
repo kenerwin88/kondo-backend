@@ -1,0 +1,82 @@
+title: terraform-room
+linters:
+  - linter:
+      name: 'Terraform Formatting Check'
+      cmd: 'terraform fmt'
+  - linter:
+      name: 'Terraform Validation'
+      cmd: 'terraform validate'
+variables:
+  - variable:
+      name: author
+      description: Name of author or organization
+  - variable:
+      name: module_name
+      description: Name of module / repository
+  - variable:
+      name: branching_strategy
+      description: Which branching strategy does the organization use?
+      options:
+        - github_flow
+        - git_flow
+        - forking_flow
+        - centralized_none
+required_files:
+  - file:
+      name: CHANGELOG.md
+      conditions:
+        - condition:
+            type: unless
+            value: CHANGELOG_DISABLED
+  - file:
+      name: main.tf
+  - file:
+      name: outputs.tf
+  - file:
+      name: variables.tf
+  - file:
+      name: README.md
+  - file:
+      name: LICENSE
+      conditions:
+        - condition:
+            type: unless
+            value: LICENSE_DISABLED
+  - file:
+      name: .pre-commit-config.yaml
+      conditions:
+        - condition:
+            type: unless
+            value: PRECOMMIT_HOOKS_DISABLED
+  - file:
+      name: .gitignore
+  - file:
+      name: .editorconfig
+  - file:
+      name: Jenkinsfile
+      conditions:
+        - condition:
+            type: only_if
+            value: GLOBAL_JENKINSFILE_ENABLED
+rules:
+  - rule:
+      name: variables_belong_in_variables_tf
+      description: Variables should be declared in the variables.tf file only.
+      triggers:
+        - trigger:
+            regex: 'variable "\S*'
+            exclude: variables.tf
+  - rule:
+      name: outputs_belong_in_outputs_tf
+      description: Outputs should be declared in the outputs.tf file only.
+      triggers:
+        - trigger:
+            regex: 'output "\S*'
+            exclude: outputs.tf
+  - rule:
+      name: data_belong_in_data_tf
+      description: Data should be declared in the data.tf file only.
+      triggers:
+        - trigger:
+            regex: 'data "\S*'
+            exclude: data.tf

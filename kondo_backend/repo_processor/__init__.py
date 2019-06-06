@@ -2,3 +2,4 @@ from .get_installations import get_installations
 from .get_access_token import get_access_token
 from .get_installation_repositories import get_installation_repositories
 from .process_repositories import process_repositories
+from .detect_repository_type import detect_repository_type
