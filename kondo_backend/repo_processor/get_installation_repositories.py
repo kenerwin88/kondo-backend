@@ -27,10 +27,10 @@ def get_installation_repositories(token: str) -> List:
     for repo in req.json()["repositories"]:
         installation_repos.append(
             {
-                "id": repo["id"],
-                "full_name": repo["full_name"],
-                "clone_url": repo["clone_url"],
-                "description": repo["description"],
+                "id": str(repo["id"]),
+                "full_name": str(repo["full_name"]),
+                "clone_url": str(repo["clone_url"]),
+                "description": str(repo["description"]),
             }
         )
     return installation_repos

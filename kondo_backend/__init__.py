@@ -5,6 +5,7 @@ from flask import Flask
 from kondo_backend import auth, organization
 from flask_restplus import Api
 from flask_cors import CORS
+from .log import log
 
 
 app = Flask(__name__)
