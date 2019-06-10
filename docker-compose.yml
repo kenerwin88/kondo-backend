@@ -1,9 +1,24 @@
 # docker-compose.yml
 # Add this top-level entry
-redis:
-  image: redis
-  container_name: redis
-  expose:
-    - 6379
-  ports:
-    - "6379:6379"
+version: '3.3'
+services:
+  redis:
+    image: redis
+    container_name: redis
+    expose:
+      - 6379
+    ports:
+      - "6379:6379"
+  kondo-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    expose:
+      - 8000
+  kondo-repo-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: "python run_repo_server.py"

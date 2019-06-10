@@ -24,19 +24,19 @@ def test_get_repositories(client):
             "repositories": [
                 {
                     "name": "kondo-test-repo",
-                    "id": "100",
+                    "id": "144091900",
                     "html_url": "https://github.com/kondo-io/kondo-test-repo",
                     "clone_url": "http://github.com/kondo-io/kondo-test-repo.git",
                 },
                 {
                     "name": "kondo-test-repo1",
-                    "id": "101",
+                    "id": "187557873",
                     "html_url": "https://github.com/kondo-io/kondo-test-repo2",
                     "clone_url": "http://github.com/kondo-io/kondo-test-repo2.git",
                 },
                 {
                     "name": "kondo-test-repo2",
-                    "id": "102",
+                    "id": "145332816",
                     "html_url": "https://github.com/kondo-io/kondo-test-repo3",
                     "clone_url": "http://github.com/kondo-io/kondo-test-repo3.git",
                 },
@@ -56,20 +56,23 @@ def test_get_repositories(client):
     assert json_output == [
         {
             "name": "kondo-test-repo",
-            "id": "100",
+            "id": "144091900",
             "url": "https://github.com/kondo-io/kondo-test-repo",
             "clone_url": "http://github.com/kondo-io/kondo-test-repo.git",
+            "repo_type": "java",
         },
         {
             "name": "kondo-test-repo1",
-            "id": "101",
+            "id": "187557873",
             "url": "https://github.com/kondo-io/kondo-test-repo2",
             "clone_url": "http://github.com/kondo-io/kondo-test-repo2.git",
+            "repo_type": "java",
         },
         {
             "name": "kondo-test-repo2",
-            "id": "102",
+            "id": "145332816",
             "url": "https://github.com/kondo-io/kondo-test-repo3",
             "clone_url": "http://github.com/kondo-io/kondo-test-repo3.git",
+            "repo_type": "java",
         },
     ]

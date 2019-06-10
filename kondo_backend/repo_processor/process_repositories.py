@@ -13,7 +13,6 @@ def process_repositories():
     necessary information for the backend API to utilize.  This function should ONLY be used for connecting all of the
     others, it shouldn't have any additional logic within.
     """
-
     # Connect to Redis
     redis_host = app.config["REDIS_HOST"]
     r = redis.Redis(host=redis_host, port=6379, db=0, decode_responses=True)
