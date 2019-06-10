@@ -1,2 +1,7 @@
+# ---------------------------------------------
+# Rooms for Room Engine
+# ---------------------------------------------
 [rooms]
-terraform = 'kondo-io/terraform-room'
+terraform = 'https://github.com/kondo-io/terraform-room.git'
+java = 'https://github.com/kondo-io/room-java.git'
+flask = 'https://github.com/kondo-io/room-flask.git'

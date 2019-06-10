@@ -18,6 +18,7 @@ redis = "^3.2"
 gitpython = "^2.1"
 testfixtures = "^6.8"
 toml = "^0.10.0"
+attrs = "^19.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"

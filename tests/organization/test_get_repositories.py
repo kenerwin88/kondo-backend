@@ -59,20 +59,20 @@ def test_get_repositories(client):
             "id": "144091900",
             "url": "https://github.com/kondo-io/kondo-test-repo",
             "clone_url": "http://github.com/kondo-io/kondo-test-repo.git",
-            "repo_type": "java",
+            "repo_type": "terraform",
         },
         {
             "name": "kondo-test-repo1",
             "id": "187557873",
             "url": "https://github.com/kondo-io/kondo-test-repo2",
             "clone_url": "http://github.com/kondo-io/kondo-test-repo2.git",
-            "repo_type": "java",
+            "repo_type": "terraform",
         },
         {
             "name": "kondo-test-repo2",
             "id": "145332816",
             "url": "https://github.com/kondo-io/kondo-test-repo3",
             "clone_url": "http://github.com/kondo-io/kondo-test-repo3.git",
-            "repo_type": "java",
+            "repo_type": "terraform",
         },
     ]

@@ -8,7 +8,7 @@ def test_clone_repository(tmp_path):
     #    clone_path.mkdir()
 
     clone_repository(
-        clone_url="https://github.com/kondo-io/terraform-room.git",
+        clone_url="https://github.com/kondo-io/room-terraform.git",
         username=os.environ["GITHUB_USER"],
         password=os.environ["GITHUB_TOKEN"],
         target_dir=str(clone_path),
@@ -22,7 +22,7 @@ def test_clone_repository_should_skip_if_exists(tmp_path):
     clone_path.mkdir()
 
     clone_repository(
-        clone_url="https://github.com/kondo-io/terraform-room.git",
+        clone_url="https://github.com/kondo-io/room-terraform.git",
         username=os.environ["GITHUB_USER"],
         password=os.environ["GITHUB_TOKEN"],
         target_dir=str(clone_path),

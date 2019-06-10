@@ -1,4 +1,4 @@
-from kondo_backend import app
+from kondo_backend import app, room_engine
 from . import get_installations, get_installation_repositories, get_access_token
 from kondo_backend import repo_processor
 from kondo_backend import git_tools
@@ -13,6 +13,10 @@ def process_repositories():
     necessary information for the backend API to utilize.  This function should ONLY be used for connecting all of the
     others, it shouldn't have any additional logic within.
     """
+
+    # Initialize Room Engine
+    rooms = room_engine.initialize_rooms()  # Load all the rooms into memory
+
     # Connect to Redis
     redis_host = app.config["REDIS_HOST"]
     r = redis.Redis(host=redis_host, port=6379, db=0, decode_responses=True)
@@ -37,9 +41,21 @@ def process_repositories():
             )
 
             # Detect Repository Type
-            repo_type = repo_processor.detect_repository_type(path=target_dir)
+            repo_type = room_engine.detect_repository_type(path=target_dir, rooms=rooms)
             log.debug(repo["full_name"] + " detected as " + repo_type)
             repo["repo_type"] = repo_type
+
+            # Validate repository using room engine
+            settings = {
+                "CHANGELOG_DISABLED": False,
+                "LICENSE_DISABLED": False,
+                "PRECOMMIT_HOOKS_DISABLED": False,
+                "GLOBAL_JENKINSFILE_ENABLED": True,
+            }
+            validation_output = room_engine.validate_repo(
+                rooms[repo_type], target_dir, settings=settings
+            )
+            print(validation_output)
 
             # Update Redis
             r.hmset(repo["id"], repo)
