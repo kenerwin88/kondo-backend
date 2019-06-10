@@ -1,4 +1,5 @@
 import jwt
+import os
 from datetime import datetime, timedelta
 import requests
 from kondo_backend import app
@@ -15,7 +16,9 @@ def get_access_token(installation_id: str) -> str:
     str
         Token for installation authenticaiton
         """
-    private_key = open(app.config["GITHUB_PRIVATE_KEY"], "r+").read()
+    private_key = open(
+        os.path.join(app.instance_path, app.config["GITHUB_PRIVATE_KEY"]), "r+"
+    ).read()
 
     payload = {
         "iat": datetime.utcnow(),

@@ -8,13 +8,13 @@ from flask_cors import CORS
 from .log import log
 
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 CORS(app)
 
 
 config = {
-    "development": "../kondo-backend.dev.config",
-    "production": "../kondo-backend.prod.config",
+    "development": "kondo-backend.dev.config",
+    "production": "kondo-backend.prod.config",
 }
 
 config_name = os.getenv("FLASK_CONFIGURATION", "production")

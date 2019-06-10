@@ -7,7 +7,7 @@ from kondo_backend import app
 @pytest.fixture
 def client():
     client = app.test_client()
-    app.config.from_pyfile("../kondo-backend.dev.config")
+    app.config.from_pyfile("../instance/kondo-backend.dev.config")
     yield client
 
 

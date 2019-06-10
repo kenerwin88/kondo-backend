@@ -42,6 +42,5 @@ def process_repositories():
             repo["repo_type"] = repo_type
 
             # Update Redis
-            print(repo)
             r.hmset(repo["id"], repo)
-            print(r.hgetall(repo["id"]))
+            log.debug("Updated repo info stored in redis: " + str(repo))
