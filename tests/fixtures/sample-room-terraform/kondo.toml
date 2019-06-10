@@ -1,0 +1,115 @@
+# ---------------------------------------------
+# Metadata
+# ---------------------------------------------
+title = "terraform"
+author = "kondo-io"
+
+# ---------------------------------------------
+# Detection (Used to determine if this matches repo)
+# ---------------------------------------------
+[detectors]
+file_extensions = [
+  ".tfvars",
+  ".tf",
+  ".tfstate"
+]
+# ---------------------------------------------
+# Variables (Populated via Jinjia in Templates)
+# ---------------------------------------------
+
+[[variables]]
+name = "author"
+description = "Name of author or organization"
+
+[[variables]]
+name = "module_name"
+description = "Name of module / repository"
+
+[[variables]]
+name = "branching_strategy"
+description = "Which branching strategy does the organization use?"
+options = [
+  "github_flow",
+  "git_flow",
+  "forking_flow",
+  "centralized_none"
+]
+
+# ---------------------------------------------
+# Required Files
+# ---------------------------------------------
+
+[[required_file]]
+name = "CHANGELOG.md"
+condition_type = "unless"
+condition_value = "CHANGELOG_DISABLED"
+
+[[required_file]]
+name = "main.tf"
+
+[[required_file]]
+name = "outputs.tf"
+
+[[required_file]]
+name = "variables.tf"
+
+[[required_file]]
+name = "README.md"
+
+[[required_file]]
+name = "LICENSE"
+condition_type = "unless"
+condition_value = "LICENSE_DISABLED"
+
+[[required_file]]
+name = ".pre-commit-config.yaml"
+condition_type = "unless"
+condition_value = "PRECOMMIT_HOOKS_DISABLED"
+
+[[required_file]]
+name = ".gitignore"
+immutable = true
+
+[[required_file]]
+name = ".editorconfig"
+immutable = true
+
+[[required_file]]
+name = "Jenkinsfile"
+condition_type = "only_if"
+condition_value = "GLOBAL_JENKINSFILE_ENABLED"
+
+[[rules]]
+name = "variables_belong_in_variables_tf"
+description = "Variables should be declared in the variables.tf file only."
+trigger_type = "file_content_regex"
+trigger_value = "variable \"\\S*"
+excluded_files = "variables.tf"
+
+[[rules]]
+name = "outputs_belong_in_outputs_tf"
+description = "Outputs should be declared in the outputs.tf file only."
+trigger_type = "file_content_regex"
+trigger_value = "output \"\\S*"
+excluded_files = "outputs.tf"
+
+[[rules]]
+name = "data_belong_in_data_tf"
+description = "Data should be declared in the data.tf file only."
+trigger_type = "file_content_regex"
+trigger_value = "data \"\\S*"
+excluded_files = "data.tf"
+
+[[rules]]
+name = "only_allow_terraform_related_content"
+description = "Terraform repositories should only have TF related files."
+trigger_type = "file_extension_restriction"
+trigger_value = ".tf, .json, .tfvars, .tf.json"
+excluded_files = [
+  ".editorconfig",
+  ".gitignore",
+  ".pre-commit-config.yaml",
+  "CHANGELOG.md",
+  "LICENSE",
+  "README.md"
+]

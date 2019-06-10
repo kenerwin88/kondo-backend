@@ -23,22 +23,22 @@ def test_get_repositories(client):
         json={
             "repositories": [
                 {
-                    "name": "kondo-test-repo",
-                    "id": "144091900",
-                    "html_url": "https://github.com/kondo-io/kondo-test-repo",
-                    "clone_url": "http://github.com/kondo-io/kondo-test-repo.git",
+                    "name": "kondo-backend",
+                    "id": "187411207",
+                    "html_url": "http://github.com/kondo-io/kondo-backend",
+                    "clone_url": "https://github.com/kondo-io/kondo-backend.git",
                 },
                 {
-                    "name": "kondo-test-repo1",
+                    "name": "kondo-frontend",
                     "id": "187557873",
-                    "html_url": "https://github.com/kondo-io/kondo-test-repo2",
-                    "clone_url": "http://github.com/kondo-io/kondo-test-repo2.git",
+                    "html_url": "http://github.com/kondo-io/kondo-frontend",
+                    "clone_url": "https://github.com/kondo-io/kondo-frontend.git",
                 },
                 {
-                    "name": "kondo-test-repo2",
-                    "id": "145332816",
-                    "html_url": "https://github.com/kondo-io/kondo-test-repo3",
-                    "clone_url": "http://github.com/kondo-io/kondo-test-repo3.git",
+                    "name": "devops",
+                    "id": "31432529",
+                    "html_url": "http://github.com/devopslibrary/devops",
+                    "clone_url": "https://github.com/devopslibrary/devops.git",
                 },
             ]
         },
@@ -55,24 +55,24 @@ def test_get_repositories(client):
     json_output = json.loads(request.data.decode("utf-8"))
     assert json_output == [
         {
-            "name": "kondo-test-repo",
-            "id": "144091900",
-            "url": "https://github.com/kondo-io/kondo-test-repo",
-            "clone_url": "http://github.com/kondo-io/kondo-test-repo.git",
-            "repo_type": "terraform",
+            "name": "kondo-backend",
+            "id": "187411207",
+            "url": "http://github.com/kondo-io/kondo-backend",
+            "clone_url": "https://github.com/kondo-io/kondo-backend.git",
+            "repo_type": "flask",
         },
         {
-            "name": "kondo-test-repo1",
+            "name": "kondo-frontend",
             "id": "187557873",
-            "url": "https://github.com/kondo-io/kondo-test-repo2",
-            "clone_url": "http://github.com/kondo-io/kondo-test-repo2.git",
-            "repo_type": "terraform",
+            "url": "http://github.com/kondo-io/kondo-frontend",
+            "clone_url": "https://github.com/kondo-io/kondo-frontend.git",
+            "repo_type": "unknown",
         },
         {
-            "name": "kondo-test-repo2",
-            "id": "145332816",
-            "url": "https://github.com/kondo-io/kondo-test-repo3",
-            "clone_url": "http://github.com/kondo-io/kondo-test-repo3.git",
-            "repo_type": "terraform",
+            "name": "devops",
+            "id": "31432529",
+            "url": "http://github.com/devopslibrary/devops",
+            "clone_url": "https://github.com/devopslibrary/devops.git",
+            "repo_type": "unknown",
         },
     ]

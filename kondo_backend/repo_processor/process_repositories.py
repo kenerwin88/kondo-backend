@@ -52,10 +52,17 @@ def process_repositories():
                 "PRECOMMIT_HOOKS_DISABLED": False,
                 "GLOBAL_JENKINSFILE_ENABLED": True,
             }
-            validation_output = room_engine.validate_repo(
-                rooms[repo_type], target_dir, settings=settings
-            )
-            print(validation_output)
+            if repo_type == "unknown":
+                log.debug(
+                    "Unable to validate repo: "
+                    + repo["full_name"]
+                    + ", repo_type not detected"
+                )
+            else:
+                validation_output = room_engine.validate_repo(
+                    rooms[repo_type], target_dir, settings=settings
+                )
+                log.debug("Validation output: " + str(validation_output))
 
             # Update Redis
             r.hmset(repo["id"], repo)

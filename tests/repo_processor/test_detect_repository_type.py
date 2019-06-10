@@ -36,7 +36,7 @@ def test_detect_repository_type_invalid():
         )
         l.check(
             (
-                "kondo_backend.room_engine.detect_repository_type",
+                "kondo_backend.log",
                 "ERROR",
                 "Path passed in to detect_repository_type is invalid",
             )

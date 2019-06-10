@@ -1,9 +1,7 @@
 import toml
 import os
 import logging
-from .required_file import RequiredFile
-from .condition import Condition
-from models import Room
+from kondo_backend.models import RequiredFile, Condition, Room
 
 
 def room_loader(path):

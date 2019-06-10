@@ -1,4 +1,3 @@
-from kondo_backend.models import Room
 import logging
 import os
 
@@ -12,25 +11,26 @@ def validate_repo(room, path, settings):
     # Debug, show all required_files before filtering
     log.debug("Listing all required_files before filtering:")
     for rf in room.required_files:
-        log.debug(rf.name)
+        log.debug("Required file: " + str(rf))
 
     applicable_required_files = []
 
     # First, start with all the required_files without conditions
     applicable_required_files += list(
-        filter(lambda x: (x.has_condition() is False), room.required_files)
+        filter(lambda x: (x.condition is False), room.required_files)
     )
 
     # Next let's work on conditionals
     required_files_with_conditions = list(
-        filter(lambda x: (x.has_condition()), room.required_files)
+        filter(lambda x: x.condition, room.required_files)
     )
+    log.debug("Required files with Conditions: " + str(required_files_with_conditions))
 
     # The "unless" condition
     applicable_required_files += list(
         filter(
             lambda x: (
-                x.condition.condition_type is "unless"
+                x.condition.condition_type == "unless"
                 and settings[x.condition.condition_value] is False
             ),
             required_files_with_conditions,

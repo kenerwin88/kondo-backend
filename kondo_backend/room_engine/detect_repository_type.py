@@ -1,7 +1,7 @@
 import glob
 import os
-import logging
 from kondo_backend.models import Room
+from kondo_backend import log
 
 
 def detect_repository_type(path, rooms: [Room]) -> str:
@@ -11,7 +11,6 @@ def detect_repository_type(path, rooms: [Room]) -> str:
     whichever one has the highest score is used as the detected repo type.
     Return language type of a given folder/path
     """
-    log = logging.getLogger(__name__)
 
     # Check to see if path passed in exists
     if not os.path.isdir(path):
@@ -27,5 +26,10 @@ def detect_repository_type(path, rooms: [Room]) -> str:
                 score[room.title] = score[room.title] + len(
                     glob.glob(path + "/**/*" + extension, recursive=True)
                 )
-
-    return max(score, key=lambda key: score[key])
+    max_value = max(score.values())
+    # If the highest value is 0, that means no room matched :(
+    if max_value == 0:
+        log.debug("Unable to determine repo type for: " + path)
+        return "unknown"
+    else:
+        return max(score, key=lambda key: score[key])
