@@ -1,16 +1,12 @@
 import toml
-import os
-import logging
+from loguru import logger
 from kondo_backend.models import RequiredFile, Condition, Room
 
 
 def room_loader(path):
     """Parses data and returns a Room object"""
-    log = logging.getLogger(__name__)
-
-    # Import kondo.toml settings
     data = toml.load(path + "/kondo.toml")
-    log.info(data)
+    logger.info(data)
 
     required_files = []
     if "required_file" in data.keys():

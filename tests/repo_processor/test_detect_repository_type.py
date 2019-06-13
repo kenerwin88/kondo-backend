@@ -34,10 +34,3 @@ def test_detect_repository_type_invalid():
             detect_repository_type(os.getcwd() + "/fixtures/bad-path", rooms=rooms)
             == "Error"
         )
-        l.check(
-            (
-                "kondo_backend.log",
-                "ERROR",
-                "Path passed in to detect_repository_type is invalid",
-            )
-        )

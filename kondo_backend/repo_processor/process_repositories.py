@@ -1,9 +1,8 @@
 from kondo_backend import app, room_engine
 from . import get_installations, get_installation_repositories, get_access_token
-from kondo_backend import repo_processor
 from kondo_backend import git_tools
 import redis
-from kondo_backend import log
+from loguru import logger
 
 
 def process_repositories():
@@ -20,7 +19,7 @@ def process_repositories():
     # Connect to Redis
     redis_host = app.config["REDIS_HOST"]
     r = redis.Redis(host=redis_host, port=6379, db=0, decode_responses=True)
-    log.info("Connected to Redis server: " + redis_host)
+    logger.info("Connected to Redis server: " + redis_host)
 
     # Process Every Repo
     installations = get_installations()
@@ -32,7 +31,7 @@ def process_repositories():
         for repo in repositories:
             # Clone Repos
             target_dir = app.config["CACHE_DIRECTORY"] + "/" + repo["full_name"]
-            log.debug("Cloning " + repo["full_name"])
+            logger.debug("Cloning " + repo["full_name"])
             git_tools.clone_repository(
                 clone_url=repo["clone_url"],
                 username="x-access-token",
@@ -42,7 +41,7 @@ def process_repositories():
 
             # Detect Repository Type
             repo_type = room_engine.detect_repository_type(path=target_dir, rooms=rooms)
-            log.debug(repo["full_name"] + " detected as " + repo_type)
+            logger.debug(repo["full_name"] + " detected as " + repo_type)
             repo["repo_type"] = repo_type
 
             # Validate repository using room engine
@@ -53,7 +52,7 @@ def process_repositories():
                 "GLOBAL_JENKINSFILE_ENABLED": True,
             }
             if repo_type == "unknown":
-                log.debug(
+                logger.debug(
                     "Unable to validate repo: "
                     + repo["full_name"]
                     + ", repo_type not detected"
@@ -62,8 +61,8 @@ def process_repositories():
                 validation_output = room_engine.validate_repo(
                     rooms[repo_type], target_dir, settings=settings
                 )
-                log.debug("Validation output: " + str(validation_output))
+                logger.debug("Validation output: " + str(validation_output))
 
             # Update Redis
             r.hmset(repo["id"], repo)
-            log.debug("Updated repo info stored in redis: " + str(repo))
+            logger.debug("Updated repo info stored in redis: " + str(repo))

@@ -19,6 +19,8 @@ gitpython = "^2.1"
 testfixtures = "^6.8"
 toml = "^0.10.0"
 attrs = "^19.1"
+pyre-check = "^0.0.27"
+loguru = "^0.2.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"

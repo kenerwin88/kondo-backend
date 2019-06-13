@@ -1,4 +1,4 @@
-from kondo_backend import log
+from loguru import logger
 from kondo_backend import app
 from kondo_backend import git_tools
 from .room_loader import room_loader
@@ -8,12 +8,12 @@ import os
 
 def initialize_rooms():
     # Initialize  Logger
-    log.info("Initializing rooms... (Cloning, loading into memory)")
+    logger.info("Initializing rooms... (Cloning, loading into memory)")
 
     # Load official room list from settings.toml
     settings_file = os.path.join(app.instance_path, "settings.toml")
     rooms = toml.load(settings_file)["rooms"]
-    log.debug("List of rooms loaded: " + str(rooms))
+    logger.debug("List of rooms loaded: " + str(rooms))
 
     # Room cache directory
     room_cache_directory = app.config["CACHE_DIRECTORY"] + "/rooms/"
@@ -33,6 +33,6 @@ def initialize_rooms():
 
         # Load Rooms
         loaded_rooms[room] = room_loader(path=room_repo_path)
-        log.info("Room: " + room + " loaded successfully.")
-    log.info("Room loading complete")
+        logger.info("Room: " + room + " loaded successfully.")
+    logger.info("Room loading complete")
     return loaded_rooms

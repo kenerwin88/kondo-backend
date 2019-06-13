@@ -1,7 +1,7 @@
 import glob
 import os
 from kondo_backend.models import Room
-from kondo_backend import log
+from loguru import logger
 
 
 def detect_repository_type(path, rooms: [Room]) -> str:
@@ -14,7 +14,7 @@ def detect_repository_type(path, rooms: [Room]) -> str:
 
     # Check to see if path passed in exists
     if not os.path.isdir(path):
-        log.exception("Path passed in to detect_repository_type is invalid")
+        logger.exception("Path passed in to detect_repository_type is invalid")
         return "Error"
     score = {}
     for r in rooms:
@@ -29,7 +29,7 @@ def detect_repository_type(path, rooms: [Room]) -> str:
     max_value = max(score.values())
     # If the highest value is 0, that means no room matched :(
     if max_value == 0:
-        log.debug("Unable to determine repo type for: " + path)
+        logger.debug("Unable to determine repo type for: " + path)
         return "unknown"
     else:
         return max(score, key=lambda key: score[key])

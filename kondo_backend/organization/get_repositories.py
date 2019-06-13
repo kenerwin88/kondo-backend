@@ -2,7 +2,6 @@ import requests
 from flask import request, Response, current_app
 from jwt import decode
 from kondo_backend.auth import api
-from kondo_backend import log
 from flask_restplus import Resource
 import json
 import redis

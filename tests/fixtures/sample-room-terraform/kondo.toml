@@ -46,6 +46,11 @@ condition_value = "CHANGELOG_DISABLED"
 
 [[required_file]]
 name = "main.tf"
+description = """
+While you technically don't have to have a main.tf file, it IS a best practice to have a main.tf at the root of your
+terraform module.  This file should serve as the primary entrypoint, and in a simple module, might be where all
+resources are created.  For more information, see https://www.terraform.io/docs/modules/index.html
+"""
 
 [[required_file]]
 name = "outputs.tf"

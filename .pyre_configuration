@@ -1,0 +1,11 @@
+{
+  "binary": ".venv/bin/pyre.bin",
+  "source_directories": [
+    "kondo_backend"
+  ],
+  "ignore_all_errors": [
+    ".venv"
+  ],
+  "search_path": ".",
+  "typeshed": "/Users/ken.erwin/Documents/kondo-io/kondo-backend/.venv/lib/pyre_check/typeshed/"
+}
