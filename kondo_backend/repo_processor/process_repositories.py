@@ -66,7 +66,7 @@ def process_repositories():
                     rooms[repo_type], target_dir, settings=settings
                 )
                 logger.debug("Validation output: " + str(violations))
-            repo["violations"] = str(violations)
+            repo["violations"] = violations
             # Update Redis
             repo_json = json.dumps(repo)
             logger.debug("Updated repo info stored in redis: " + str(repo_json))

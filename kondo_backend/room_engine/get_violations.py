@@ -2,9 +2,10 @@ from loguru import logger
 from kondo_backend.models import Violation
 from kondo_backend.models import RequiredFile
 import os
+from typing import List
 
 
-def get_violations(room, path, settings) -> [Violation]:
+def get_violations(room, path, settings) -> List[Violation]:
     """Analyzes a repository via a room, returns an array of violations & if found"""
     logger.info("Analyzing: " + path + " with room: " + room.title)
 

@@ -1,5 +1,6 @@
-from kondo_backend.models import Room, RequiredFile, Condition
-from kondo_backend.room_engine import validate_repo, room_loader
+from kondo_backend.room_engine import room_loader, get_violations
+from kondo_backend.models import Violation
+import json
 
 
 def test_room_validation():
@@ -14,10 +15,14 @@ def test_room_validation():
         "PRECOMMIT_HOOKS_DISABLED": False,
         "GLOBAL_JENKINSFILE_ENABLED": True,
     }
-    violations = validate_repo(
+    violations: [Violation] = get_violations(
         room=room, path="fixtures/sample-terraform-project", settings=settings
     )
-    assert len(violations) == 7
+    detected_violations = list(
+        filter(lambda violation: (violation.detected is True), violations)
+    )
+    print(detected_violations)
+    assert len(detected_violations) == 8
 
 
 def test_room_validation_precommit_hooks_disabled():
@@ -33,7 +38,10 @@ def test_room_validation_precommit_hooks_disabled():
         "PRECOMMIT_HOOKS_DISABLED": False,
         "GLOBAL_JENKINSFILE_ENABLED": True,
     }
-    violations = validate_repo(
+    violations: [Violation] = get_violations(
         room=room, path="fixtures/sample-terraform-project", settings=settings
     )
-    assert len(violations) == 6
+    detected_violations = list(
+        filter(lambda violation: (violation.detected is True), violations)
+    )
+    assert len(detected_violations) == 7
