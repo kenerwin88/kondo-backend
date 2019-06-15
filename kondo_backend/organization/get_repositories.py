@@ -4,7 +4,8 @@ from jwt import decode
 from kondo_backend.auth import api
 from flask_restplus import Resource
 import json
-import redis
+import rejson
+from loguru import logger
 
 
 @api.route("/repositories")
@@ -42,19 +43,23 @@ class Repository(Resource):
 
         # Connect to Redis
         redis_host = current_app.config["REDIS_HOST"]
-        r = redis.Redis(host=redis_host, port=6379, db=0, decode_responses=True)
+        r = rejson.Client(host=redis_host, port=6379, db=0, decode_responses=True)
         # log.info("Connected to Redis server: " + redis_host)
         repos_json = req.json()["repositories"]
         repos = []
         for repo in repos_json:
-            processed_repo = r.hgetall(repo["id"])
+            repo_id: int = repo["id"]
+            processed_repo = json.loads(r.jsonget(repo_id))
+
+            logger.debug("JSON repo info retrieved from Redis: " + str(processed_repo))
             repos.append(
                 {
                     "name": repo["name"],
                     "id": str(repo["id"]),
                     "url": repo["html_url"],
                     "clone_url": repo["clone_url"],
-                    "repo_type": str(processed_repo["repo_type"]),
+                    "repo_type": processed_repo["repo_type"],
+                    "violations": processed_repo["violations"],
                 }
             )
         return Response(json.dumps(repos), status=200, mimetype="application/json")

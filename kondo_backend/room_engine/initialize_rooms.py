@@ -1,12 +1,13 @@
 from loguru import logger
 from kondo_backend import app
 from kondo_backend import git_tools
+from kondo_backend.models import Room
 from .room_loader import room_loader
 import toml
 import os
 
 
-def initialize_rooms():
+def initialize_rooms() -> [Room]:
     # Initialize  Logger
     logger.info("Initializing rooms... (Cloning, loading into memory)")
 

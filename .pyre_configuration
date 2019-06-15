@@ -7,5 +7,5 @@
     ".venv"
   ],
   "search_path": ".",
-  "typeshed": "/Users/ken.erwin/Documents/kondo-io/kondo-backend/.venv/lib/pyre_check/typeshed/"
+  "typeshed": ".venv/lib/pyre_check/typeshed/"
 }

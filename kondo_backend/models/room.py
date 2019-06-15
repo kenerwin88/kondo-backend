@@ -1,16 +1,5 @@
 import attr
-
-
-@attr.s(auto_attribs=True)
-class Condition:
-    condition_type: str
-    condition_value: str
-
-
-@attr.s(auto_attribs=True)
-class RequiredFile:
-    name: str
-    condition: Condition
+from .required_file import RequiredFile
 
 
 @attr.s(auto_attribs=True)
@@ -29,7 +18,8 @@ class Rule:
 @attr.s(auto_attribs=True)
 class Detectors:
     """
-    A rule is part of a room, it's used for advanced checks to ensure cleanliness
+
+    The detectors are used to see if a repo should use this room (auto detection)
     """
 
     file_extensions: [str]

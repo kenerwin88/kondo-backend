@@ -21,6 +21,7 @@ toml = "^0.10.0"
 attrs = "^19.1"
 pyre-check = "^0.0.27"
 loguru = "^0.2.5"
+rejson = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"

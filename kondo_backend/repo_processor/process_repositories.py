@@ -1,8 +1,9 @@
 from kondo_backend import app, room_engine
 from . import get_installations, get_installation_repositories, get_access_token
 from kondo_backend import git_tools
-import redis
+import rejson
 from loguru import logger
+import json
 
 
 def process_repositories():
@@ -18,7 +19,7 @@ def process_repositories():
 
     # Connect to Redis
     redis_host = app.config["REDIS_HOST"]
-    r = redis.Redis(host=redis_host, port=6379, db=0, decode_responses=True)
+    r = rejson.Client(host=redis_host, port=6379)
     logger.info("Connected to Redis server: " + redis_host)
 
     # Process Every Repo
@@ -51,18 +52,23 @@ def process_repositories():
                 "PRECOMMIT_HOOKS_DISABLED": False,
                 "GLOBAL_JENKINSFILE_ENABLED": True,
             }
+
+            # Check for violations unless repo_type is unknown
             if repo_type == "unknown":
                 logger.debug(
                     "Unable to validate repo: "
                     + repo["full_name"]
                     + ", repo_type not detected"
                 )
+                violations = False
             else:
-                validation_output = room_engine.validate_repo(
+                violations = room_engine.get_violations(
                     rooms[repo_type], target_dir, settings=settings
                 )
-                logger.debug("Validation output: " + str(validation_output))
-
+                logger.debug("Validation output: " + str(violations))
+            repo["violations"] = str(violations)
             # Update Redis
-            r.hmset(repo["id"], repo)
-            logger.debug("Updated repo info stored in redis: " + str(repo))
+            repo_json = json.dumps(repo)
+            logger.debug("Updated repo info stored in redis: " + str(repo_json))
+            repo_id: int = repo["id"]
+            r.jsonset(repo_id, rejson.Path.rootPath(), repo_json)

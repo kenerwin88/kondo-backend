@@ -60,6 +60,7 @@ def test_get_repositories(client):
             "url": "http://github.com/kondo-io/kondo-backend",
             "clone_url": "https://github.com/kondo-io/kondo-backend.git",
             "repo_type": "flask",
+            "violations": "[]",
         },
         {
             "name": "kondo-frontend",
@@ -67,6 +68,7 @@ def test_get_repositories(client):
             "url": "http://github.com/kondo-io/kondo-frontend",
             "clone_url": "https://github.com/kondo-io/kondo-frontend.git",
             "repo_type": "unknown",
+            "violations": "False",
         },
         {
             "name": "devops",
@@ -74,5 +76,6 @@ def test_get_repositories(client):
             "url": "http://github.com/devopslibrary/devops",
             "clone_url": "https://github.com/devopslibrary/devops.git",
             "repo_type": "unknown",
+            "violations": "False",
         },
     ]

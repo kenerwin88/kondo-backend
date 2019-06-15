@@ -558,6 +558,14 @@ version = "3.2.1"
 
 [[package]]
 category = "main"
+description = "ReJSON Python Client"
+name = "rejson"
+optional = false
+python-versions = "*"
+version = "0.4.0"
+
+[[package]]
+category = "main"
 description = "Python HTTP for Humans."
 name = "requests"
 optional = false
@@ -700,7 +708,7 @@ python-versions = ">=2.7"
 version = "0.5.1"
 
 [metadata]
-content-hash = "1ff4a5bdda58a14b29d3325d511469268d477201130f27a62e8b1d2e30257f00"
+content-hash = "e1de84662dd6684d2305d640ae3d16219bc4d2fcbcb47cd4fd18368587a27189"
 python-versions = "^3.7"
 
 [metadata.hashes]
@@ -758,6 +766,7 @@ pytest = ["3f193df1cfe1d1609d4c583838bea3d532b18d6160fd3f55c9447fdca30848ec", "e
 pytz = ["303879e36b721603cc54604edcac9d20401bdbe31e1e4fdee5b9f98d5d31dfda", "d747dd3d23d77ef44c6a3526e274af6efeb0a6f1afd5a69ba4d5be4098c8e141"]
 pywatchman = ["d0047eb275deafb0011eda0a1a815fbd9742478c3d2b5ad6956d300e447dc2f9"]
 redis = ["6946b5dca72e86103edc8033019cc3814c031232d339d5f4533b02ea85685175", "8ca418d2ddca1b1a850afa1680a7d2fd1f3322739271de4b704e0d4668449273"]
+rejson = ["381a920c6f79d6710c493a6da4abbd5511f27b6db1f3fc2bd6038e16c46be245"]
 requests = ["11e007a8a2aa0323f5a921e9e6a2d7e4e67d9877e85773fba9ba6419025cbeb4", "9cf5292fcd0f598c671cfc1e0d7d1a7f13bb8085e9a590f48c010551dc6c4b31"]
 responses = ["502d9c0c8008439cfcdef7e251f507fcfdd503b56e8c0c87c3c3e3393953f790", "97193c0183d63fba8cd3a041c75464e4b09ea0aff6328800d1546598567dde0b"]
 simplegeneric = ["dc972e06094b9af5b855b3df4a646395e43d1c9d0d39ed345b7393560d0b9173"]
