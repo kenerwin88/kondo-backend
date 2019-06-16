@@ -1563,7 +1563,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/adde.git",
             description="Automated Declarative Data Engine",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=144029418,
@@ -1571,7 +1571,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/backbone-webpack-example.git",
             description="Example of converting a Backbone app to use Webpack",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=31432529,
@@ -1579,7 +1579,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/devops.git",
             description=None,
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=62659379,
@@ -1587,7 +1587,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/devops-demo.git",
             description="This app is used for demonstrating and testing various DevOps, CI, and CD concepts.",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=146112848,
@@ -1595,7 +1595,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/devops-designer.git",
             description="Web application used for planning DevOps projects, calculating automation ROI, and more.",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=50810995,
@@ -1603,7 +1603,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/devopslibrary.github.io.git",
             description=None,
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=144091900,
@@ -1611,7 +1611,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/dockerized-webpack-backbone.git",
             description="Dockerized version of the webpack-backbone example application",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=44071287,
@@ -1619,7 +1619,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/IntroductionToVagrant.git",
             description=None,
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=143876008,
@@ -1627,7 +1627,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/jenkins-maven.git",
             description="Small project to spin up Jenkins & Maven.",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=50811733,
@@ -1635,7 +1635,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/minimal-mistakes.git",
             description="A responsive Jekyll theme with clean typography and support for large full page images.",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=145332816,
@@ -1643,7 +1643,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/packer.git",
             description="Packer Templates for building Windows Operating Systems",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=66381848,
@@ -1651,7 +1651,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/PSSlack.git",
             description="PowerShell module for simple Slack integration",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=142315117,
@@ -1659,7 +1659,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/resume.git",
             description="Ken Erwin's Resume",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=143085130,
@@ -1667,7 +1667,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/sample_declarative_data.git",
             description="Repository with Sample Declarative Data",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=50205607,
@@ -1675,7 +1675,7 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/slack.git",
             description=None,
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
         Repo(
             id=142693097,
@@ -1683,6 +1683,6 @@ def test_get_installation_repositories():
             clone_url="https://github.com/devopslibrary/workstation-setup.git",
             description="Scripts for setting up an OSX workstation with all the tools you'd ever want... Maybe :)",
             violations=[],
-            repo_type="unknown",
+            room_type="unknown",
         ),
     ]

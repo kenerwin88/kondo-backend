@@ -10,16 +10,20 @@ class Repo:
     clone_url: str
     description: str
     violations: [Violation]
-    repo_type: str
+    room_type: str
 
     def to_json(self):
-        return json.dumps(
-            {
-                "id": self.id,
-                "name": self.name,
-                "clone_url": self.clone_url,
-                "description": self.description,
-                "violations": self.violations,
-                "repo_type": self.repo_type,
-            }
-        )
+        if self.violations != "False":
+            json_violations = []
+            for v in self.violations:
+                json_violations.append(v.to_json())
+        else:
+            json_violations = "False"
+        return {
+            "id": self.id,
+            "name": self.name,
+            "clone_url": self.clone_url,
+            "description": self.description,
+            "violations": json_violations,
+            "room_type": self.room_type,
+        }

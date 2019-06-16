@@ -1,6 +1,7 @@
 from kondo_backend import app, room_engine
 from . import get_installations, get_installation_repositories, get_access_token
 from kondo_backend import git_tools
+from kondo_backend.models import Repo
 import rejson
 from loguru import logger
 import json
@@ -27,23 +28,23 @@ def process_repositories():
     for install in installations:
         auth_token = get_access_token(install["id"])
 
-        repositories = get_installation_repositories(auth_token)
+        repositories: [Repo] = get_installation_repositories(auth_token)
 
         for repo in repositories:
             # Clone Repos
-            target_dir = app.config["CACHE_DIRECTORY"] + "/" + repo["full_name"]
-            logger.debug("Cloning " + repo["full_name"])
+            target_dir = app.config["CACHE_DIRECTORY"] + "/" + repo.name
+            logger.debug("Cloning " + repo.name)
             git_tools.clone_repository(
-                clone_url=repo["clone_url"],
+                clone_url=repo.clone_url,
                 username="x-access-token",
                 password=auth_token,
                 target_dir=target_dir,
             )
 
             # Detect Repository Type
-            repo_type = room_engine.detect_repository_type(path=target_dir, rooms=rooms)
-            logger.debug(repo["full_name"] + " detected as " + repo_type)
-            repo["repo_type"] = repo_type
+            room_type = room_engine.detect_repository_type(path=target_dir, rooms=rooms)
+            logger.debug(repo.name + " detected as " + room_type)
+            repo.room_type = room_type
 
             # Validate repository using room engine
             settings = {
@@ -53,22 +54,20 @@ def process_repositories():
                 "GLOBAL_JENKINSFILE_ENABLED": True,
             }
 
-            # Check for violations unless repo_type is unknown
-            if repo_type == "unknown":
+            # Check for violations unless room_type is unknown
+            if room_type == "unknown":
                 logger.debug(
-                    "Unable to validate repo: "
-                    + repo["full_name"]
-                    + ", repo_type not detected"
+                    "Unable to validate repo: " + repo.name + ", room_type not detected"
                 )
-                violations = False
+                violations = "False"
             else:
                 violations = room_engine.get_violations(
-                    rooms[repo_type], target_dir, settings=settings
+                    rooms[room_type], target_dir, settings=settings
                 )
                 logger.debug("Validation output: " + str(violations))
-            repo["violations"] = violations
+            repo.violations = violations
             # Update Redis
-            repo_json = json.dumps(repo)
+            repo_json = json.dumps(repo.to_json())
             logger.debug("Updated repo info stored in redis: " + str(repo_json))
-            repo_id: int = repo["id"]
+            repo_id: int = repo.id
             r.jsonset(repo_id, rejson.Path.rootPath(), repo_json)

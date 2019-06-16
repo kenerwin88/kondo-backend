@@ -59,7 +59,7 @@ def test_get_repositories(client):
             "id": "187411207",
             "url": "http://github.com/kondo-io/kondo-backend",
             "clone_url": "https://github.com/kondo-io/kondo-backend.git",
-            "repo_type": "flask",
+            "room_type": "flask",
             "violations": [],
         },
         {
@@ -67,16 +67,16 @@ def test_get_repositories(client):
             "id": "187557873",
             "url": "http://github.com/kondo-io/kondo-frontend",
             "clone_url": "https://github.com/kondo-io/kondo-frontend.git",
-            "repo_type": "unknown",
-            "violations": False,
+            "room_type": "unknown",
+            "violations": "False",
         },
         {
             "name": "devops",
             "id": "31432529",
             "url": "http://github.com/devopslibrary/devops",
             "clone_url": "https://github.com/devopslibrary/devops.git",
-            "repo_type": "unknown",
-            "violations": False,
+            "room_type": "unknown",
+            "violations": "False",
         },
     ]
 
@@ -117,7 +117,7 @@ def test_get_repositories_with_violations(client):
             "id": "182435080",
             "url": "http://github.com/kondo-io/room-terraform",
             "clone_url": "https://github.com/kondo-io/room-terraform.git",
-            "repo_type": "terraform",
+            "room_type": "terraform",
             "violations": [
                 '{"name": "CHANGELOG.md", "description": false, "type": "requiredFile", "detected": "False", "skipped": "False"}',
                 '{"name": "main.tf", "description": false, "type": "requiredFile", "detected": "False", "skipped": "False"}',

@@ -58,7 +58,7 @@ class Repository(Resource):
                     "id": str(repo["id"]),
                     "url": repo["html_url"],
                     "clone_url": repo["clone_url"],
-                    "repo_type": processed_repo["repo_type"],
+                    "room_type": processed_repo["room_type"],
                     "violations": processed_repo["violations"],
                 }
             )

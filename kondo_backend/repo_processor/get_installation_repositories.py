@@ -29,7 +29,7 @@ def get_installation_repositories(token: str) -> List[Repo]:
                 name=repo["full_name"],
                 clone_url=repo["clone_url"],
                 description=repo["description"],
-                repo_type="unknown",
+                room_type="unknown",
                 violations=[],
             )
         )
