@@ -1,2 +1,2 @@
 # Type Checking
-.venv/bin/pyre --hide-parse-errors
+.venv/bin/pyre --hide-parse-errorss
